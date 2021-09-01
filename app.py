@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+import json
 
 from sqlalchemy.orm import sessionmaker
 from models import base, Clothes, Colors, ClothesToColor
@@ -22,19 +23,37 @@ base.metadata.create_all(engine)
 
 @app.route('/')
 def index():
+    ret = []
     data = {}
+   
     clothes = session.query(Clothes).all()
+    # for c in clothes:
+    #     if str(c.anime) not in ret:
+            
+    #         ret.append({str(c.anime): [{'name': str(c.name), 'details': []}]})
+    #         index = ret.index(str(c.anime))
+    #     else:
+    #         index = ret.index(str(c.anime))
+    #         ret[index][str(c.anime)].append({'name': str(c.name), 'details': []})
+    #     ownership = session.query(ClothesToColor).filter_by(clothing_id= c.id).all()
+    #     for o in ownership:
+    #             color = session.query(Colors).filter_by(id = o.color_id).first().color
+            
+    #             ret[index][str(c.anime)][len(ret[index][str(c.anime)])-1]['details'].append({'color': str(color),'image':str(o.image), 'stock': int(o.stock), 'type': str(o.type)})
+                
+       
+    # print(ret)    
     for c in clothes:
         if c.anime not in data:
-            data[c.anime] = []
-            data[c.anime].append({c.name: {'details': []} } )
+            data[str(c.anime)] = []
+            data[str(c.anime)].append({str(c.name): {'details': []} } )
         else: 
-            data[c.anime].append({c.name: { 'details': []} } )
+            data[str(c.anime)].append({str(c.name): { 'details': []} } )
         ownership = session.query(ClothesToColor).filter_by(clothing_id= c.id).all()
         for o in ownership:
             color = session.query(Colors).filter_by(id = o.color_id).first().color
-            data[c.anime][len(data[c.anime])-1][c.name]['details'].append({'color': color,'image':o.image, 'stock': o.stock, 'type': o.type})
-      
+            data[str(c.anime)][len(data[str(c.anime)])-1][str(c.name)]['details'].append({'color': str(color),'image':str(o.image), 'stock': int(o.stock), 'type': str(o.type)})
+    
     return jsonify(data)
 
-    
+   

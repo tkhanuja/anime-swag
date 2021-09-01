@@ -28,8 +28,8 @@ def ownership(name, color, stock, path, type):
     session.commit()
     
 def populate_tables(name, anime, stock, color, path, type):
-    add_clothing(name, anime)
-    add_colors(color)
+    # add_clothing(name, anime)
+    # add_colors(color)
     ownership(name, color, stock, path, type)
     
 # animes  
@@ -52,7 +52,7 @@ green = 'Green'
 white = 'White'
 
 
-populate_tables('Akatsuki T-shirt', naruto, 3, black, 'images.akatsuki_cloud_black.jpg', tshirt)
-populate_tables('Akatsuki T-shirt', naruto, 0, red, 'images.akatsuki_cloud_red.jpg',  tshirt)
+populate_tables('sharingan', naruto, 3, black, 'images.sharingan_black.jpg', tshirt)
+# populate_tables('Akatsuki T-shirt', naruto, 0, red, 'images.akatsuki_cloud_red.jpg',  tshirt)
 
 
