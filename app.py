@@ -53,7 +53,7 @@ def index():
         for o in ownership:
             color = session.query(Colors).filter_by(id = o.color_id).first().color
             data[str(c.anime)][len(data[str(c.anime)])-1][str(c.name)]['details'].append({'color': str(color),'image':str(o.image), 'stock': int(o.stock), 'type': str(o.type)})
-    
+    print(data)
     return jsonify(data)
 
    
