@@ -10,7 +10,7 @@ from sqlalchemy import create_engine
 
 base = declarative_base()
 
-#TSHIRTS TABLES
+#TSHIRTS TABLE
 class Clothes(base):
     __tablename__ = 'clothes'
     id = Column(Integer(), primary_key=True)

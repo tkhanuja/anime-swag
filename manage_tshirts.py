@@ -6,7 +6,6 @@ from app import session
 #def __init__(self, name, anime, path, type):
 #def __init__(self, color_id, clothing_id, stock):
 # all = session.query(Tshirts).all()
-#tshirts
 
 def add_clothing(name, anime) :
     if not session.query(Clothes).filter_by(name = name).first():

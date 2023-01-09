@@ -1,4 +1,6 @@
 .vscode
 images
+
 venv
 storage.db
+
